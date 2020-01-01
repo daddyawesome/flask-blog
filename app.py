@@ -13,7 +13,10 @@ class BlogPost(db.Model):
      title = db.Column(db.String(100), nullable=False)
      content = db.Column(db.Text, nullable=False )
      author = db.Column(db.String(20), nullable=False, default='N/A')
-     date_posted = db.Column(db.Datetime, nullable=False, default=datetime.utcnow)
+     date_posted = db.Column(db.DateTime, nullable=False, default=datetime.utcnow)
+
+     def __repr__(self):
+         return 'Blog post' + str(self.id)
 
 
 all_posts = [
@@ -34,7 +37,7 @@ all_posts = [
 def index():
     return render_template('index.html')
 
-@app.route('/posts')
+@app.route('/posts', methods=['GET', 'POSTS'])
 def posts():
     return render_template('posts.html', posts = all_posts)
 
