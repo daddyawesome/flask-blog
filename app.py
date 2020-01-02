@@ -30,7 +30,6 @@ all_posts = [
         'title': 'Post 2',
         'content': 'This is the content of post 2 post 2post 2post 2post 2post 2'
     }
-
 ]
 
 
@@ -51,6 +50,10 @@ def posts():
     else:
         all_posts = BlogPost.query.order_by(BlogPost.date_posted).all()
         return render_template('posts.html', posts = all_posts)
+
+
+
+
 
 @app.route('/home/user/<string:name>/posts/<int:id>')
 def hello(name, id):
