@@ -62,6 +62,19 @@ def edit(id):
         return render_template('edit.html', post=post)
 
 
+@app.route('/posts/new', methods=['GET','POST'])
+def new_post():
+    if request.method == 'POST':
+        post_title = request.form['title']
+        port_author = request.form['author']
+        post_content = request.form['content']
+        new_post = BlogPost(title=post_title, content = post_content, author=port_author)
+        db.session.add(new_post)
+
+        db.session.commit()
+        return redirect('/posts')
+    else:
+        return render_template('new_post.html')
 
 
 @app.route('/home/user/<string:name>/posts/<int:id>')
