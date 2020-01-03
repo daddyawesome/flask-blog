@@ -48,6 +48,15 @@ def delete(id):
     return redirect('/posts')
 
 
+@app.route('/posts/edit/<int:id>', methods=['GET','POST'])
+def edit(id):
+    post =BlogPost.query.get_or_404(id)
+    post.title = request.form['title']
+    post.author = request.form['author']
+    post.content = request.form['content']
+    db.session.commit()
+
+    return redirect('/posts')
 
 
 @app.route('/home/user/<string:name>/posts/<int:id>')
