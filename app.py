@@ -20,18 +20,6 @@ class BlogPost(db.Model):
          return 'Blog post' + str(self.id)
 
 
-all_posts = [
-    {
-        'title': 'Post 1',
-        'content': 'This is the content of post 1',
-        'author': 'Daddyawesome'
-    },
-    {
-        'title': 'Post 2',
-        'content': 'This is the content of post 2 post 2post 2post 2post 2post 2'
-    }
-]
-
 
 @app.route('/')
 def index():
@@ -43,7 +31,8 @@ def posts():
     if request.method == 'POST':
         post_title = request.form['title']
         post_content = request.form['content']
-        new_post = BlogPost(title=post_title, content = post_content, author='DaddyAwesome')
+        port_author = request.form['author']
+        new_post = BlogPost(title=post_title, content = post_content, author=port_author)
         db.session.add(new_post)
         db.session.commit()
         return redirect('/posts')
