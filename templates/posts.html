@@ -11,11 +11,16 @@
     <hr>
     <h2>Create New Blog Post</h2>
     <form action='/posts' method='POST'>
-        Title: <input type='text' name = 'title' id='title'>
+
+        <label for="title">Title:</label>
+        <input class="form-control" type="text" name = 'title' id='title' placeholder="Enter Title">
         <br>
-        Author: <input type='text' name = 'author' id='author'>
+        <label for="author">Author:</label>
+        <input class="form-control" type="text" name = 'author' id='author' placeholder="Enter Author">
         <br>
-        Post: <input type='text' name = 'content' id='content'>
+
+        <label for="content">Post:</label>
+        <textarea class="form-control" name = 'content' id='content' placeholder="Enter Content" rows="3"></textarea>
         <br>
         <input type='submit' value = 'Post' >
 
@@ -33,7 +38,7 @@
         {% endif %}
         <br>
         <br>
-        <p>{{ post.content }}</p>
+        <p style="white-space:pre-wrap">{{ post.content }}</p>
         <a class="btn btn-danger" href='/posts/delete/{{post.id}}'>Delete</a>
         <a class="btn btn-primary" href='/posts/edit/{{post.id}}'>Edit</a>
         <hr>
